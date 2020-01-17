@@ -7,21 +7,22 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace MeuPedido.iOS
 {
-    [Register ("CatalogoTableViewController")]
-    partial class CatalogoTableViewController
+    [Register ("CategoryTableViewController")]
+    partial class CategoryTableViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView catalogoListTableView { get; set; }
+        UIKit.UITableView categoryTableView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (catalogoListTableView != null) {
-                catalogoListTableView.Dispose ();
-                catalogoListTableView = null;
+            if (categoryTableView != null) {
+                categoryTableView.Dispose ();
+                categoryTableView = null;
             }
         }
     }

@@ -106,15 +106,19 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogoTableViewCell.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogoTableViewCell.designer.cs">
-      <DependentUpon>CatalogoTableViewCell.cs</DependentUpon>
+    <Compile Include="ViewControllers\Catalogo\CatalogTableViewController.cs" />
+    <Compile Include="ViewControllers\Catalogo\CatalogTableViewController.designer.cs">
+      <DependentUpon>CatalogTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Catalogo\CatalogoTableViewController.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogoTableViewController.designer.cs">
-      <DependentUpon>CatalogoTableViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\Catalogo\CatalogTableViewCell.cs" />
+    <Compile Include="ViewControllers\Catalogo\CatalogTableViewCell.designer.cs">
+      <DependentUpon>CatalogTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Catalogo\CatalogoDataSource.cs" />
+    <Compile Include="ViewControllers\Utils.cs" />
+    <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.cs" />
+    <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.designer.cs">
+      <DependentUpon>CategoryTableViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
