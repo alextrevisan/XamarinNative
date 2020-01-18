@@ -54,9 +54,9 @@ namespace MeuPedido.iOS
             cartTableView.Source = tableSource;
             cartTableView.TableFooterView = new UIView();
         }
-        public override void ViewDidAppear(bool animated)
+        public override void ViewWillAppear(bool animated)
         {
-            base.ViewDidAppear(animated);
+            base.ViewWillAppear(animated);
 
             CartList = AppData.CurrentCart.Products();
 

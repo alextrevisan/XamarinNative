@@ -8,6 +8,7 @@ namespace MeuPedido.iOS
     public partial class CatalogTableViewController : UITableViewController
     {
         private List<Product> FilteredList = new List<Product>();
+        private Product currentProduct;
         public CatalogTableViewController (IntPtr handle) : base (handle)
         {
         }
@@ -18,9 +19,9 @@ namespace MeuPedido.iOS
             LoadData();
         }
 
-        public override void ViewDidAppear(bool animated)
+        public override void ViewWillAppear(bool animated)
         {
-            base.ViewDidAppear(animated);
+            base.ViewWillAppear(animated);
             FilterProductsByCategory();
             this.catalogListTableView.ReloadData();
         }
@@ -56,6 +57,20 @@ namespace MeuPedido.iOS
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
             return 120;
+        }
+
+        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+        {
+            //base.RowSelected(tableView, indexPath);
+            currentProduct = FilteredList[indexPath.Row];            
+            this.PerformSegue("showDetailSegue", this);
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            ProductDetailViewController vc = segue.DestinationViewController as ProductDetailViewController;
+            vc.SetProduct(currentProduct);
         }
     }
 }
