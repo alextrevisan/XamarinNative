@@ -69,8 +69,11 @@ namespace MeuPedido.iOS
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
-            ProductDetailViewController vc = segue.DestinationViewController as ProductDetailViewController;
-            vc.SetProduct(currentProduct);
+            if (segue.Identifier == "showDetailSegue")
+            {
+                ProductDetailViewController vc = segue.DestinationViewController as ProductDetailViewController;
+                vc.SetProduct(currentProduct);
+            }
         }
     }
 }
