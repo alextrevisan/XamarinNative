@@ -9,10 +9,10 @@ namespace MeuPedido
 {
     public class AppData
     {
-        public static List<Product> Products { get; set; }
-        public static List<Sale> Sales { get; set; }
-        public static List<Category> Categories { get; set; }
-        
+        public static List<Product> Products { get; set; } = new List<Product>();
+        public static List<Sale> Sales { get; set; } = new List<Sale>();
+        public static List<Category> Categories { get; set; } = new List<Category>();
+        public static Cart CurrentCart = new Cart();
 
         private static AppData instance;
         public static AppData GetInstance()
@@ -27,9 +27,6 @@ namespace MeuPedido
 
         private AppData()
         {
-            Products = new List<Product>();
-            Sales = new List<   Sale>();
-            Categories = new List<Category>();
             
         }
 
@@ -43,7 +40,6 @@ namespace MeuPedido
             string productsContent = await productsTask;
             Products = JsonConvert.DeserializeObject<List<Product>>(productsContent);
 
-
             string salesUrl = "https://pastebin.com/raw/R9cJFBtG";
             Task<string> salesTask = httpClient.GetStringAsync(salesUrl);
             string salesContent = await salesTask;
@@ -53,8 +49,6 @@ namespace MeuPedido
             Task<string> categoriesTask = httpClient.GetStringAsync(categoriesUrl);
             string categoriesContent = await categoriesTask;
             Categories = JsonConvert.DeserializeObject<List<Category>>(categoriesContent);
-            //SelectedCategories.AddRange(Enumerable.Repeat(true, Categories.Count));
-
         }
     }
 }

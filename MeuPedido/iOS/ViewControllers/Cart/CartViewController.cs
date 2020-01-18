@@ -47,7 +47,9 @@ namespace MeuPedido.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            FilterProductsOnCart();
+
+            CartList = AppData.CurrentCart.Products();
+
             tableSource = new TableSource(CartList);
             cartTableView.Source = tableSource;
             cartTableView.TableFooterView = new UIView();
@@ -55,27 +57,24 @@ namespace MeuPedido.iOS
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-        
-            FilterProductsOnCart();
+
+            CartList = AppData.CurrentCart.Products();
+
             tableSource.UpdateCartList(CartList);
             CalculateTotal();
             cartTableView.ReloadData();
+        }
 
-        }
-        private void FilterProductsOnCart()
-        {
-            CartList = AppData.Products.FindAll(x =>
-                x.ItemCount > 0
-            );
-        }
 
         private void CalculateTotal()
         {
             long itemCount = 0;
             double valueTotal = 0;
             CartList.ForEach(x => {
-                itemCount += x.ItemCount;
-                valueTotal += x.ItemCount * x.SalePrice;
+                var quantity = AppData.CurrentCart.QuantityFor(x);
+                var price = AppData.CurrentCart.PriceFor(x);
+                itemCount += quantity;
+                valueTotal += quantity * price;
             });
 
             totalItemCount.Text = itemCount + " UN";

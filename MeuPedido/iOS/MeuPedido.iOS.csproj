@@ -93,7 +93,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="ViewControllers\" />
-    <Folder Include="ViewControllers\Catalogo\" />
+    <Folder Include="ViewControllers\Catalog\" />
     <Folder Include="ViewControllers\Cart\" />
   </ItemGroup>
   <ItemGroup>
@@ -107,17 +107,17 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogTableViewController.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogTableViewController.designer.cs">
+    <Compile Include="ViewControllers\Catalog\CatalogTableViewController.cs" />
+    <Compile Include="ViewControllers\Catalog\CatalogTableViewController.designer.cs">
       <DependentUpon>CatalogTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\Catalogo\CatalogTableViewCell.cs" />
-    <Compile Include="ViewControllers\Catalogo\CatalogTableViewCell.designer.cs">
+    <Compile Include="ViewControllers\Catalog\CatalogTableViewCell.cs" />
+    <Compile Include="ViewControllers\Catalog\CatalogTableViewCell.designer.cs">
       <DependentUpon>CatalogTableViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\Utils.cs" />
-    <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.cs" />
-    <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.designer.cs">
+    <Compile Include="ViewControllers\Catalog\CategoryTableViewController.cs" />
+    <Compile Include="ViewControllers\Catalog\CategoryTableViewController.designer.cs">
       <DependentUpon>CategoryTableViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\Cart\CartViewController.cs" />

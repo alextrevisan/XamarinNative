@@ -32,6 +32,8 @@
     <Compile Include="Sale.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="AppData.cs" />
+    <Compile Include="CartItem.cs" />
+    <Compile Include="Cart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
