@@ -11,17 +11,9 @@ using UIKit;
 
 namespace MeuPedido.iOS
 {
-    [Register ("CatalogTableViewCell")]
-    partial class CatalogTableViewCell
+    [Register ("CartTableViewCell")]
+    partial class CartTableViewCell
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton addItemBtn { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton favoritedBtn { get; set; }
-
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel itemCountText { get; set; }
@@ -42,22 +34,8 @@ namespace MeuPedido.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel productValue { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton subItemBtn { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (addItemBtn != null) {
-                addItemBtn.Dispose ();
-                addItemBtn = null;
-            }
-
-            if (favoritedBtn != null) {
-                favoritedBtn.Dispose ();
-                favoritedBtn = null;
-            }
-
             if (itemCountText != null) {
                 itemCountText.Dispose ();
                 itemCountText = null;
@@ -81,11 +59,6 @@ namespace MeuPedido.iOS
             if (productValue != null) {
                 productValue.Dispose ();
                 productValue = null;
-            }
-
-            if (subItemBtn != null) {
-                subItemBtn.Dispose ();
-                subItemBtn = null;
             }
         }
     }

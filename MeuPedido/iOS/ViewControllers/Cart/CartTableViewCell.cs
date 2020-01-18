@@ -1,19 +1,16 @@
 using Foundation;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using UIKit;
-using static MeuPedido.Sale;
 
 namespace MeuPedido.iOS
 {
-    public partial class CatalogTableViewCell : UITableViewCell
+    public partial class CartTableViewCell : UITableViewCell
     {
         private Product CurrentProduct;
         private List<Sale> CurrentSales;
-        public CatalogTableViewCell (IntPtr handle) : base (handle)
+        public CartTableViewCell (IntPtr handle) : base (handle)
         {
-
         }
 
         public void SetData(Product product, List<Sale> sales)
@@ -25,15 +22,12 @@ namespace MeuPedido.iOS
             itemCountText.Text = CurrentProduct.ItemCount + " UN";
             productImage.Image = Utils.UIImageFromUrl(product.Photo);
 
-                      
-            
-            
+
+
+
 
             UpdateSale();
-            UpdateFavorite();
-            CreateButtonEvents();
 
-            
         }
 
         void UpdateSale()
@@ -57,27 +51,13 @@ namespace MeuPedido.iOS
             }
         }
 
-        void UpdateFavorite()
-        {
-            if(CurrentProduct.Favorited)
-            {
-                favoritedBtn.SetTitle("★", UIControlState.Normal);
-                favoritedBtn.TintColor = UIColor.Gray;
-            }
-            else
-            {
-                favoritedBtn.SetTitle("☆", UIControlState.Normal);
-                favoritedBtn.TintColor = UIColor.LightGray;
-            }
-        }
-
         private double LoadCurrentDiscount(Sale currentSale)
         {
             if (currentSale != null)
             {
                 currentSale.Policies.Sort((x, y) => x.Min > y.Min ? -1 : 1);
                 var currentPolicy = currentSale.Policies.Find(x => x.Min <= CurrentProduct.ItemCount);
-                if(currentPolicy != null)
+                if (currentPolicy != null)
                 {
                     return currentPolicy.Discount;
                 }
@@ -87,39 +67,6 @@ namespace MeuPedido.iOS
                 productDiscount.Hidden = true;
             }
             return 0;
-        }
-
-        private void CreateButtonEvents()
-        {
-            addItemBtn.TouchUpInside -= OnAddButtonClicked;
-            subItemBtn.TouchUpInside -= OnSubButtonClicked;
-            favoritedBtn.TouchUpInside -= OnFavoriteButtonClicked;
-
-            addItemBtn.TouchUpInside += OnAddButtonClicked;
-            subItemBtn.TouchUpInside += OnSubButtonClicked;
-            favoritedBtn.TouchUpInside += OnFavoriteButtonClicked;
-        }
-
-        void OnAddButtonClicked(object sender, EventArgs args)
-        {
-            CurrentProduct.ItemCount++;
-            itemCountText.Text = CurrentProduct.ItemCount + " UN";
-            UpdateSale();
-        }
-
-        void OnSubButtonClicked(object sender, EventArgs args)
-        {
-            CurrentProduct.ItemCount--;
-            CurrentProduct.ItemCount = Math.Max(CurrentProduct.ItemCount, 0);
-
-            itemCountText.Text = CurrentProduct.ItemCount + " UN";
-            UpdateSale();
-        }
-
-        void OnFavoriteButtonClicked(object sender, EventArgs args)
-        {
-            CurrentProduct.Favorited = !CurrentProduct.Favorited;
-            UpdateFavorite();
         }
     }
 }

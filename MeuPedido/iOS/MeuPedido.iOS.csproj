@@ -94,6 +94,7 @@
     <Folder Include="Resources\" />
     <Folder Include="ViewControllers\" />
     <Folder Include="ViewControllers\Catalogo\" />
+    <Folder Include="ViewControllers\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -118,6 +119,14 @@
     <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.cs" />
     <Compile Include="ViewControllers\Catalogo\CategoryTableViewController.designer.cs">
       <DependentUpon>CategoryTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Cart\CartViewController.cs" />
+    <Compile Include="ViewControllers\Cart\CartViewController.designer.cs">
+      <DependentUpon>CartViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Cart\CartTableViewCell.cs" />
+    <Compile Include="ViewControllers\Cart\CartTableViewCell.designer.cs">
+      <DependentUpon>CartTableViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
