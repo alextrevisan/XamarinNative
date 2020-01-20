@@ -39,6 +39,7 @@ namespace MeuPedido
             Task<string> productsTask = httpClient.GetStringAsync(productUrl);
             string productsContent = await productsTask;
             Products = JsonConvert.DeserializeObject<List<Product>>(productsContent);
+            Products.Sort((a, b) => a.Category_id < b.Category_id ? -1 : 1);
 
             string salesUrl = "https://pastebin.com/raw/R9cJFBtG";
             Task<string> salesTask = httpClient.GetStringAsync(salesUrl);
