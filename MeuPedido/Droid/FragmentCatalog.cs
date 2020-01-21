@@ -15,24 +15,15 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 namespace MeuPedido.Droid
 {
-    public class FragmentCatalog : Fragment
+    public class FragmentCatalog : Fragment, ListView.IOnItemClickListener
     {
         private ListView catalogListView;
         public static Button buyButton;
+        private CatalogListAdapter adapter;
         
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
-        }
-
-        private void CatalogListView_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            
-        }
-
-        private void CatalogListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
             
         }
 
@@ -42,10 +33,10 @@ namespace MeuPedido.Droid
             catalogListView = view.FindViewById<ListView>(Resource.Id.catalog_list_view);
             buyButton = view.FindViewById<Button>(Resource.Id.buyBtn);
 
-            catalogListView.ItemClick += CatalogListView_ItemClick;
-            catalogListView.LongClick += CatalogListView_LongClick;
+            catalogListView.OnItemClickListener = this;
 
-            catalogListView.Adapter = new CatalogListAdapter(Activity, AppData.Products);
+            adapter = new CatalogListAdapter(Activity, AppData.Products);
+            catalogListView.Adapter = adapter;
 
             buyButton.Click += BuyBtn_Click;
 
@@ -71,6 +62,16 @@ namespace MeuPedido.Droid
             });
 
             buyButton.Text = string.Format("Comprar ➤ R$ {0:0.00}", valueTotal).Replace(".", ",");
+        }
+
+        public void OnItemClick(AdapterView parent, View view, int position, long id)
+        {
+            Console.WriteLine("ITEMMMM");
+            var activity = new Intent(Activity, typeof(ProductDetailActivity));
+
+            Product item = adapter[position];
+            activity.PutExtra("product_id", item.Id);
+            StartActivity(activity);
         }
     }
 }

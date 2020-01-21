@@ -175,6 +175,7 @@
     <Compile Include="CatalogListAdapter.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="CartListAdapter.cs" />
+    <Compile Include="ProductDetailActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -364,6 +365,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_check.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_product_detail.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

@@ -15,6 +15,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 namespace MeuPedido.Droid
 {
+    
     public class FragmentCart : Fragment
     {
         private ListView cartListView;

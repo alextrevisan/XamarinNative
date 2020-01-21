@@ -12,6 +12,7 @@
         {
             private static List<Product> curLists = new List<Product>();
             readonly Activity myContext;
+            private static CartListAdapter instance;
 
             public override Product this[int position]
             {
@@ -24,12 +25,14 @@
             public static void UpdateCart()
             {
                 curLists = AppData.CurrentCart.Products();
+                instance.NotifyDataSetChanged();
             }
 
             public CartListAdapter(Activity context, List<Product> inpLists) : base()
             {
                 this.myContext = context;
                 curLists = inpLists;
+                instance = this;
             }
 
             public override long GetItemId(int position)

@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         android:id="@+id/catalog_list_view"
         android:layout_weight="0.5"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:clickable="true"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
