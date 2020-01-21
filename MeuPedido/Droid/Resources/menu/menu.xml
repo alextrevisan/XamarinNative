@@ -8,11 +8,6 @@
             android:icon="@mipmap/icon">
         </item>
         <item
-            android:id="@+id/sales"
-            android:title="Promoções"
-            android:icon="@mipmap/icon">
-        </item>
-        <item
             android:id="@+id/cart"
             android:title="Carrinho"
             android:icon="@mipmap/icon">

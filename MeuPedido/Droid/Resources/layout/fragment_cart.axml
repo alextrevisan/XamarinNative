@@ -16,14 +16,75 @@
         android:id="@+id/catalog_list_view"
         android:layout_weight="0.5"
         android:divider="@null"/>
+    <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:id="@+id/cartBuyLayout"
+                android:background="#EFF0F5">
+		<TextView
+			android:text="0 UN"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textColor="#9b9b9b"
+			android:id="@+id/cartTotalItems"
+			android:textAlignment="textEnd"
+			android:layout_marginRight="16dp"
+			android:layout_marginTop="16dp"
+            android:gravity="right"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cacaca"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"/>
+		<LinearLayout
+			android:orientation="horizontal"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/linearLayout2" >
+			<TextView
+				android:text="Total"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/textView2"
+				android:layout_marginLeft="16dp"
+				android:layout_marginRight="16dp"
+				android:layout_weight="0.5"
+				android:textColor="#9b9b9b"
+				android:textStyle="bold"
+                android:textSize="16dp"/>
+			<TextView
+				android:text="R$ 0,00"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/cartTotalValue"
+				android:layout_marginLeft="16dp"
+				android:layout_marginRight="16dp"
+				android:layout_weight="0.5"
+				android:textAlignment="textEnd"
+                android:gravity="right"
+				android:textColor="@android:color/black"
+				android:textStyle="bold"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+        </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:minWidth="25px"
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:id="@+id/cartBuyLayout"
-                android:background="@color/cardview_dark_background">
+                android:id="@+id/cartStatusLayout"
+                android:background="#212121"
+        >
 		<Button
 			android:text="Finalizar Compra"
 			android:layout_width="match_parent"

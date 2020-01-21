@@ -71,7 +71,6 @@
                 var quantity = AppData.CurrentCart.QuantityFor(product);
 
 
-
                 productTitle.Text = product.Name;
                 itemCountText.Text = string.Format("{0} UN", quantity);
                 productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");

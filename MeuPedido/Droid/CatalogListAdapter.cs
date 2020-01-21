@@ -10,8 +10,9 @@ namespace MeuPedido.Droid
 {
     public class CatalogListAdapter : BaseAdapter<Product>
     {
-        readonly List<Product> curLists;
+        private static List<Product> curLists = new List<Product>();
         readonly Activity myContext;
+        private static CatalogListAdapter instance = null;
 
         public override Product this[int position]
         {
@@ -24,7 +25,26 @@ namespace MeuPedido.Droid
         public CatalogListAdapter(Activity context, List<Product> inpLists) : base()
         {
             this.myContext = context;
-            this.curLists = inpLists;
+            curLists = inpLists;
+            instance = this;
+        }
+
+        public static void UpdateCatalog()
+        {
+
+            var categories = AppData.Categories.FindAll(x => x.Selected);
+            if(categories.Count == 0)
+            {
+                curLists = AppData.Products;
+            }
+            else
+            {
+                curLists = AppData.Products.FindAll(x =>
+                                categories.Exists(cat => cat.Id == x.Category_id)
+                            );
+            }
+            
+            instance.NotifyDataSetChanged();
         }
 
         public override long GetItemId(int position)
@@ -88,15 +108,16 @@ namespace MeuPedido.Droid
             //Fake section
             var currentSale = AppData.Sales.Find(x => x.Category_id == product.Category_id);
             var hasSale = currentSale != null;
-            var newCategory = position > 0 && product.Category_id != curLists[position - 1].Category_id;
-            var hasSection = position == 0 ? !hasSale : newCategory ? !hasSale : true;
+
+            var isNewCategory = position > 0 && product.Category_id != curLists[position - 1].Category_id;
+            var hasSection = position == 0 || isNewCategory;
 
             var section = view.FindViewById<RelativeLayout>(Resource.Id.section);
-            section.Visibility = hasSection ? ViewStates.Invisible : ViewStates.Visible;
-            section.LayoutParameters.Height = hasSection ? 0 : 32 * pixelToDp;
+            section.Visibility = hasSection ? ViewStates.Visible : ViewStates.Invisible;
+            section.LayoutParameters.Height = hasSection ? 32 * pixelToDp : 0;
 
             var sectionText = view.FindViewById<TextView>(Resource.Id.sectionText);
-            sectionText.Text = hasSection || currentSale == null ? "" : currentSale.Name;
+            sectionText.Text = !hasSection? "" : hasSale ? currentSale.Name : "Outros";
 
             return view;
         }
