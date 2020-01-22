@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -54,7 +55,7 @@ namespace MeuPedido.Droid
             });
 
             cartTotalItems.Text = itemCount + " UN";
-            cartTotalValue.Text = String.Format("R$ {0:0.00}", valueTotal).Replace(".", ",");
+            cartTotalValue.Text = valueTotal.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR")); 
         }
     }
 }

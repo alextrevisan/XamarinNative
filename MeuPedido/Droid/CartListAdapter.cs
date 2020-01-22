@@ -1,6 +1,7 @@
 ﻿    using System;
     using System.Collections.Generic;
-    using Android.App;
+using System.Globalization;
+using Android.App;
     using Android.Graphics;
     using Android.Views;
     using Android.Widget;
@@ -76,7 +77,7 @@
 
                 productTitle.Text = product.Name;
                 itemCountText.Text = string.Format("{0} UN", quantity);
-                productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");
+                productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
                 itemCountText.Text = string.Format("{0} UN", quantity);
                 discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
                 productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");

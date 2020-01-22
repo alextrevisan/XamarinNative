@@ -1,5 +1,4 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
@@ -18,6 +17,7 @@ namespace MeuPedido.Droid
         Android.Support.Design.Widget.NavigationView.IOnNavigationItemSelectedListener,
         Android.Support.V4.View.ViewPager.IOnPageChangeListener
     {
+        
         private SupportToolbar supportToolbar;
         private DrawerLayout drawerLayout;
         private NavigationView navigationView;
@@ -29,6 +29,7 @@ namespace MeuPedido.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            PlatformAppConfig.DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             base.OnCreate(savedInstanceState);
             //RequestWindowFeature(WindowFeatures.ActionBar);
             SetContentView(Resource.Layout.activity_main);

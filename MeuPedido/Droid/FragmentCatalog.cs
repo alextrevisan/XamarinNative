@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -61,7 +62,7 @@ namespace MeuPedido.Droid
                 valueTotal += quantity * price;
             });
 
-            buyButton.Text = string.Format("Comprar ➤ R$ {0:0.00}", valueTotal).Replace(".", ",");
+            buyButton.Text = "Comprar ➤ "+ valueTotal.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
         }
 
         public void OnItemClick(AdapterView parent, View view, int position, long id)

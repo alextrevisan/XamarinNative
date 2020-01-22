@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Android.App;
 using Android.Graphics;
 using Android.Views;
@@ -89,7 +90,7 @@ namespace MeuPedido.Droid
 
             productTitle.Text = product.Name;
             itemCountText.Text = string.Format("{0} UN", quantity);
-            productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
             itemCountText.Text = string.Format("{0} UN", quantity);
             discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
@@ -103,7 +104,7 @@ namespace MeuPedido.Droid
 
             ImageButton favButton = view.FindViewById<ImageButton>(Resource.Id.favoriteBtn);
             favButton.SetOnClickListener(new FavoriteClickListener(product, favButton));
-            favButton.SetImageResource(product.Favorited ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
+            favButton.SetImageResource(FavoritesManager.GetInstance().IsFavorite(product) ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
 
             //Fake section
             var currentSale = AppData.Sales.Find(x => x.Category_id == product.Category_id);
@@ -154,7 +155,7 @@ namespace MeuPedido.Droid
             itemCountText.Text = string.Format("{0} UN", quantity);
             discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
-            productValue.Text = string.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
             FragmentCatalog.UpdateBuyButton();
             FragmentCart.UpdateCart();
         }
@@ -172,9 +173,16 @@ namespace MeuPedido.Droid
         }
         public void OnClick(View v)
         {
-            product.Favorited = !product.Favorited;
+            if (FavoritesManager.GetInstance().IsFavorite(product))
+            {
+                FavoritesManager.GetInstance().RemoveFavorite(product);
+            }
+            else
+            {
+                FavoritesManager.GetInstance().AddFavorite(product);
+            }
 
-            favButton.SetImageResource(product.Favorited ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
+            favButton.SetImageResource(FavoritesManager.GetInstance().IsFavorite(product) ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
         }
     }
 }

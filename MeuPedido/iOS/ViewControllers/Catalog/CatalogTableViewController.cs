@@ -36,20 +36,36 @@ namespace MeuPedido.iOS
         private void FilterProductsByCategory()
         {
             var categories = AppData.Categories.FindAll(x => x.Selected);
+
             FilteredList = AppData.Products.FindAll(x =>
                 categories.Exists(cat => cat.Id == x.Category_id)
             );
+
+            if(categories.Count == AppData.Categories.Count)
+            {
+                FilteredList.AddRange(AppData.Products.FindAll(x => x.Category_id == null));
+            }
+        }
+
+        public override nint NumberOfSections(UITableView tableView)
+        {
+            return AppData.Sales.Count + 1;
+        }
+
+        public override string TitleForHeader(UITableView tableView, nint section)
+        {
+            return AppData.Sales.Count > 0 && AppData.Sales.Count > section ? AppData.Sales[(int)section].Name : "Outros";
         }
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return FilteredList.Count;
+            return ProductsInSection((int)section).Count;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             CatalogTableViewCell cell = tableView.DequeueReusableCell("catalogTableViewCell") as CatalogTableViewCell;
-            var product = FilteredList[indexPath.Row];
+            var product = ProductsInSection(indexPath.Section)[indexPath.Row];
             cell.SetData(product);
             return cell;
         }
@@ -62,7 +78,7 @@ namespace MeuPedido.iOS
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             //base.RowSelected(tableView, indexPath);
-            currentProduct = FilteredList[indexPath.Row];            
+            currentProduct = ProductsInSection(indexPath.Section)[indexPath.Row];            
             this.PerformSegue("showDetailSegue", this);
         }
 
@@ -74,6 +90,15 @@ namespace MeuPedido.iOS
                 ProductDetailViewController vc = segue.DestinationViewController as ProductDetailViewController;
                 vc.SetProduct(currentProduct);
             }
+        }
+
+        private List<Product> ProductsInSection(int section)
+        {
+            if (section < AppData.Sales.Count)
+            {
+                return FilteredList.FindAll(x => x.Category_id == AppData.Sales[(int)section].Category_id);
+            }
+            return FilteredList.FindAll(x => !AppData.Sales.Exists(sale => sale.Category_id == x.Category_id));
         }
     }
 }

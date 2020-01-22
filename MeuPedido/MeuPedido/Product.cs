@@ -9,6 +9,5 @@ namespace MeuPedido
         public string Photo { get; set; }
         public double Price { get; set; }
         public long? Category_id { get; set; }
-        public bool Favorited { get; set; } = false;
     }
 }

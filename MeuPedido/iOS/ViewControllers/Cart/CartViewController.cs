@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UIKit;
 
 namespace MeuPedido.iOS
@@ -78,7 +79,7 @@ namespace MeuPedido.iOS
             });
 
             totalItemCount.Text = itemCount + " UN";
-            totalValue.Text = String.Format("R$ {0:0.00}", valueTotal).Replace(".", ",");
+            totalValue.Text = valueTotal.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
 
 
         }

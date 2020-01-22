@@ -2,6 +2,7 @@ using Foundation;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using UIKit;
 using static MeuPedido.Sale;
 
@@ -38,13 +39,13 @@ namespace MeuPedido.iOS
             productDiscount.Hidden = discount <= 0.0;    
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
             //@TODO corrigir a formatacão do preço
-            productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
             itemCountText.Text = quantity + " UN";
         }
 
         void UpdateFavorite()
         {
-            if(CurrentProduct.Favorited)
+            if (FavoritesManager.GetInstance().IsFavorite(CurrentProduct))
             {
                 favoritedBtn.SetTitle("★", UIControlState.Normal);
                 favoritedBtn.TintColor = UIColor.Gray;
@@ -85,7 +86,15 @@ namespace MeuPedido.iOS
 
         void OnFavoriteButtonClicked(object sender, EventArgs args)
         {
-            CurrentProduct.Favorited = !CurrentProduct.Favorited;
+            
+            if (FavoritesManager.GetInstance().IsFavorite(CurrentProduct))
+            {
+                FavoritesManager.GetInstance().RemoveFavorite(CurrentProduct);
+            }
+            else
+            {
+                FavoritesManager.GetInstance().AddFavorite(CurrentProduct);
+            }
             UpdateFavorite();
         }
     }

@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UIKit;
 
 namespace MeuPedido.iOS
@@ -34,7 +35,7 @@ namespace MeuPedido.iOS
             productDiscount.Hidden = discount <= 0.0;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
             //@TODO corrigir a formatacão do preço
-            productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR")); 
             itemCountText.Text = quantity + " UN";
         }
     }

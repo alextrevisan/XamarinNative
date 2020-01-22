@@ -10,6 +10,7 @@ using System;
 using Android.Support.V4.View;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace MeuPedido.Droid
 {
@@ -61,7 +62,7 @@ namespace MeuPedido.Droid
             productTitle.Text = product.Name;
             productDescription.Text = product.Description;
             itemCountText.Text = string.Format("{0} UN", quantity);
-            productValue.Text = String.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
             itemCountText.Text = string.Format("{0} UN", quantity);
             discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
@@ -75,15 +76,23 @@ namespace MeuPedido.Droid
 
             ImageButton favButton = FindViewById<ImageButton>(Resource.Id.favoriteBtn);
             favButton.Click += FavButton_Click;
-            favButton.SetImageResource(product.Favorited ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
+            favButton.SetImageResource(FavoritesManager.GetInstance().IsFavorite(product) ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
 
         }
 
         private void FavButton_Click(object sender, EventArgs e)
         {
-            product.Favorited = !product.Favorited;
+            if (FavoritesManager.GetInstance().IsFavorite(product))
+            {
+                FavoritesManager.GetInstance().RemoveFavorite(product);
+            }
+            else
+            {
+                FavoritesManager.GetInstance().AddFavorite(product);
+            }
+
             ImageButton favButton = FindViewById<ImageButton>(Resource.Id.favoriteBtn);
-            favButton.SetImageResource(product.Favorited ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
+            favButton.SetImageResource(FavoritesManager.GetInstance().IsFavorite(product) ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
             UpdateData();
         }
 
@@ -113,7 +122,7 @@ namespace MeuPedido.Droid
             itemCountText.Text = string.Format("{0} UN", quantity);
             discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
-            productValue.Text = string.Format("R$ {0:0.00}", price).Replace(".", ",");
+            productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
 
             FragmentCatalog.UpdateBuyButton();
             FragmentCart.UpdateCart();
