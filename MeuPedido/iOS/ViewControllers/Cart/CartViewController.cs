@@ -44,6 +44,7 @@ namespace MeuPedido.iOS
         private TableSource tableSource = new TableSource(new List<Product>());
         public CartViewController (IntPtr handle) : base (handle)
         {
+            //TabBarController.TabBarItem.AccessibilityLabel = "buyBtn";
         }
         public override void ViewDidLoad()
         {

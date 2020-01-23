@@ -11,6 +11,7 @@ namespace MeuPedido.iOS
         private Product currentProduct;
         public CatalogTableViewController (IntPtr handle) : base (handle)
         {
+            
         }
 
         public override void ViewDidLoad()
