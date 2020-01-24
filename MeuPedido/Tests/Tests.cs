@@ -29,18 +29,59 @@ namespace Tests
         [Test]
         public void AppLaunches()
         {
+            
             app.Screenshot("Primeira tela");
+            
             app.Tap(x => x.Id("addButon"));
             app.WaitForElement("1 UN");
             app.Tap(x => x.Id("addButon"));
             app.WaitForElement("2 UN");
             app.Tap(x => x.Id("subButon"));
             app.WaitForElement("1 UN");
+            app.Tap(x => x.Id("subButon"));
+            
+            
+
+            app.ScrollDownTo(x => x.Text("Lavadora e Secadora WD103 10.1 kg Branca 127 V"));
+            app.Tap(x => x.Text("Lavadora e Secadora WD103 10.1 kg Branca 127 V").Parent());
+            app.ScrollDownTo(x => x.Id("addButon"));
+            for(int i=0; i< 9;++i)
+            {
+                app.Tap(x => x.Id("addButon"));
+            }
+
+            app.WaitForElement("R$ 2.136,60");
+            app.Tap(x => x.Id("addButon"));
+            app.WaitForElement("R$ 1.922,94");
+            app.WaitForElement("↓10,0%");
+
+            for (int i = 0; i < 20; ++i)
+            {
+                app.Tap(x => x.Id("addButon"));
+            }
+
+            app.WaitForElement("R$ 1.495,62");
+            app.WaitForElement("↓30,0%");
+
+            app.Tap(x => x.Id("favoriteBtn"));
+
             if (platform == Platform.Android)
             {
+                app.Tap(x => x.Text("Detalhes").Sibling());
                 app.Tap(x => x.Id("buyBtn"));
-                app.WaitForElement("1 UN");
             }
+            else
+            {
+                app.Tap(x => x.Class("UITabBarButton"));
+                app.Tap(x => x.Text("Carrinho"));
+            }
+
+            app.WaitForElement("R$ 1.495,62");
+            app.WaitForElement("↓30,0%");
+            app.WaitForElement("30 UN");
+            app.WaitForElement("R$ 44.868,60");
+
+            //app.Repl();
 
         }
         
