@@ -114,6 +114,8 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\placeholder.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\placeholder.imageset\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -122,6 +124,7 @@
     <Folder Include="ViewControllers\Cart\" />
     <Folder Include="ViewControllers\Detail\" />
     <Folder Include="ViewControllers\Sales\" />
+    <Folder Include="Assets.xcassets\placeholder.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

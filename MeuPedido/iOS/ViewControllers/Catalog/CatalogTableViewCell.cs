@@ -34,7 +34,18 @@ namespace MeuPedido.iOS
 
 
             productTitle.Text = CurrentProduct.Name;
-            productImage.Image = Utils.UIImageFromUrl(CurrentProduct.Photo);
+
+
+            Utils.AsyncImageSet(CurrentProduct.Photo, (image) =>
+            {
+                 InvokeOnMainThread(() =>
+                 {
+                     productImage.Image = image;
+                 });
+            });
+            
+            
+            //productImage.Image = Utils.UIImageFromUrl(CurrentProduct.Photo);
 
             productDiscount.Hidden = discount <= 0.0;    
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");

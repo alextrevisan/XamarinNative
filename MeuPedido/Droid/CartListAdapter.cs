@@ -56,12 +56,11 @@ using Android.App;
 
                 var pixelToDp = (int)Android.Content.Res.Resources.System.DisplayMetrics.Density;
 
-                view.SetMinimumHeight(106 * pixelToDp);
+                view.SetMinimumHeight(88 * pixelToDp);
 
                 ImageView productImage = view.FindViewById<ImageView>(Resource.Id.cartProductImage);
 
-                var img = Utils.GetImageBitmapFromUrl(product.Photo);
-                productImage.SetImageBitmap(img);
+                Utils.AsyncImageSet(product.Photo, productImage);
 
                 TextView productTitle = view.FindViewById<TextView>(Resource.Id.cartProductTitle);
                 TextView productDiscount = view.FindViewById<TextView>(Resource.Id.cartProductSale);

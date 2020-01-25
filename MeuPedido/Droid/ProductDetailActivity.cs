@@ -14,7 +14,7 @@ using System.Globalization;
 
 namespace MeuPedido.Droid
 {
-    [Activity(Label = "ProductDetailActivity",Theme = "@style/Theme.AppCompat.Light")]
+    [Activity(Label = "ProductDetailActivity", Theme = "@style/Theme.AppCompat.Light")]
     public class ProductDetailActivity : AppCompatActivity
     {
         private Product product;
@@ -34,7 +34,7 @@ namespace MeuPedido.Droid
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var id = Intent.GetLongExtra("product_id", -1);
-            if(id < 0)
+            if (id < 0)
             {
                 Finish();
             }
@@ -42,8 +42,8 @@ namespace MeuPedido.Droid
 
             ImageView productImage = FindViewById<ImageView>(Resource.Id.detailProductImage);
 
-            var img = Utils.GetImageBitmapFromUrl(product.Photo);
-            productImage.SetImageBitmap(img);
+
+            Utils.AsyncImageSet(product.Photo, productImage);
 
             TextView productTitle = FindViewById<TextView>(Resource.Id.detailProductName);
             TextView productDescription = FindViewById<TextView>(Resource.Id.detailProductDescription);
@@ -105,7 +105,7 @@ namespace MeuPedido.Droid
         private void AddButton_Click(object sender, EventArgs e)
         {
             AppData.CurrentCart.Add(product);
-            UpdateData();            
+            UpdateData();
         }
 
         private void UpdateData()

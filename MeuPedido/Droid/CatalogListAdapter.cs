@@ -72,8 +72,8 @@ namespace MeuPedido.Droid
 
             ImageView productImage = view.FindViewById<ImageView>(Resource.Id.productImage);
 
-            var img = Utils.GetImageBitmapFromUrl(product.Photo);
-            productImage.SetImageBitmap(img);
+            
+            Utils.AsyncImageSet(product.Photo, productImage);
 
             TextView productTitle = view.FindViewById<TextView>(Resource.Id.productTitle);
             TextView productDiscount = view.FindViewById<TextView>(Resource.Id.productSale);

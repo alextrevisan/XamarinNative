@@ -9,6 +9,7 @@ using System;
 using Android.Support.V4.View;
 using System.Drawing;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MeuPedido.Droid
 {
@@ -30,6 +31,23 @@ namespace MeuPedido.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             PlatformAppConfig.DocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            PlatformAppConfig.FileWrite = (string name, byte[] data) =>
+            {
+                File.WriteAllBytes(name, data);
+            };
+
+            PlatformAppConfig.FileRead = (string name) =>
+            {
+                try
+                {
+                    return File.ReadAllBytes(name);
+                }
+                catch
+                {
+                    return null;
+                }
+            };
+
             base.OnCreate(savedInstanceState);
             //RequestWindowFeature(WindowFeatures.ActionBar);
             SetContentView(Resource.Layout.activity_main);

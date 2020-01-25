@@ -4348,6 +4348,9 @@ namespace MeuPedido.Droid
 			// aapt resource value: 0x7F0D0005
 			public const int ic_star_border = 2131558405;
 			
+			// aapt resource value: 0x7F0D0007
+			public const int placeholder = 2131558407;
+			
 			static Mipmap()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

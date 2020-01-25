@@ -61,7 +61,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNs-lQ-uJ1">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNs-lQ-uJ1" image="placeholder">
                                             <rect key="frame" x="16" y="8" width="98" height="100"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOi-3K-hUl">
@@ -209,7 +209,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28039">
                                         <rect key="frame" x="0.0" y="18.5" width="414" height="495.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="28473">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="28473" image="placeholder">
                                                 <rect key="frame" x="8" y="8" width="398" height="256"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="256" id="28475"/>
@@ -505,7 +505,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-ug-SRN">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-ug-SRN" image="placeholder">
                                                     <rect key="frame" x="16" y="8" width="58" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="58" id="gA6-FT-dL9"/>
@@ -709,6 +709,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="placeholder" width="100" height="100"/>
         <image name="list.bullet.below.rectangle" catalog="system"/>
         <image name="wand.and.rays" catalog="system"/>
         <image name="cart" catalog="system"/>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Android.Graphics;
+using Android.Widget;
 
 namespace MeuPedido.Droid
 {
@@ -12,17 +14,43 @@ namespace MeuPedido.Droid
         {
             if (!ImageCache.ContainsKey(url))
             {
-                using (var webClient = new WebClient())
+
+                var imgData = CacheManager.LoadCache(url.GetHashCode().ToString());
+                if(imgData != null)
                 {
-                    var imageBytes = webClient.DownloadData(url);
-                    if (imageBytes != null && imageBytes.Length > 0)
+                    Bitmap bitmap = BitmapFactory.DecodeByteArray(imgData, 0, imgData.Length);
+                    ImageCache[url] = bitmap;
+                }
+                else
+                {
+                    using (var webClient = new WebClient())
                     {
-                        ImageCache[url] = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                        var imageBytes = webClient.DownloadData(url);
+                        if (imageBytes != null && imageBytes.Length > 0)
+                        {
+                            ImageCache[url] = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                            CacheManager.SaveCache(url.GetHashCode().ToString(), imageBytes);
+                        }
                     }
                 }
             }
 
             return ImageCache[url];
+        }
+
+        public static void AsyncImageSet(string url, ImageView imageView)
+        {
+            var DownloadTask = Task.Factory.StartNew(() => {
+                try
+                {
+                    Bitmap image = GetImageBitmapFromUrl(url);
+                    imageView.SetImageBitmap(image);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            });
         }
     }
 }

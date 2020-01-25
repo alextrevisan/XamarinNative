@@ -4,9 +4,14 @@ using SQLite;
 
 namespace MeuPedido
 {
+    public delegate void FileWriteCallback(string filename, byte[] data);
+    public delegate byte[] FileReadCallback(string filename);
+
     public static class PlatformAppConfig
     {
         public static string DocumentsPath { get; set; }
+        public static FileWriteCallback FileWrite;
+        public static FileReadCallback FileRead;
     }
     //https://docs.microsoft.com/pt-br/xamarin/android/data-cloud/data-access/using-sqlite-orm
     public class FavoritesManager
