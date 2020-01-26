@@ -49,18 +49,11 @@ namespace MeuPedido.Droid
             };
 
             base.OnCreate(savedInstanceState);
-            //RequestWindowFeature(WindowFeatures.ActionBar);
             SetContentView(Resource.Layout.activity_main);
+
             ConnectControls();
 
-            //SetHasOptionsMenu(true);
-
             LoadData();
-
-            
-
-            
-            //supportToolbar.ShowContextMenu();
         }
 
         private async void LoadData()
@@ -118,11 +111,8 @@ namespace MeuPedido.Droid
             return base.OnCreateOptionsMenu(menu);
         }
 
-        
-
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            Console.WriteLine(item.ItemId);
             if(categoryItems.ContainsKey(item.ItemId))
             {
                 AppData.Categories.ForEach(x => {
@@ -154,8 +144,6 @@ namespace MeuPedido.Droid
                 default:
                     return base.OnOptionsItemSelected(item);
             }
-            
-            
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
@@ -183,12 +171,12 @@ namespace MeuPedido.Droid
 
         public void OnPageScrollStateChanged(int state)
         {
-            //throw new NotImplementedException();
+            
         }
 
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
-            //throw new NotImplementedException();
+            
         }
 
         public void OnPageSelected(int position)

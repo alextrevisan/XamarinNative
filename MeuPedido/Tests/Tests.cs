@@ -37,12 +37,12 @@ namespace Tests
             app.Tap(x => x.Id("addButon"));
             app.WaitForElement("2 UN");
             app.Tap(x => x.Id("subButon"));
-            app.WaitForElement("1 UN");
+            app.WaitForElement("1 UN"); 
             app.Tap(x => x.Id("subButon"));
             
             
 
-            app.ScrollDownTo(x => x.Text("Lavadora e Secadora WD103 10.1 kg Branca 127 V"));
+            app.ScrollDownTo(x => x.Text("Lavadora e Secadora WD103 10.1 kg Branca 127 V"), strategy: ScrollStrategy.Gesture, timeout: new TimeSpan(0,1,0));
             app.Tap(x => x.Text("Lavadora e Secadora WD103 10.1 kg Branca 127 V").Parent());
             app.ScrollDownTo(x => x.Id("addButon"));
             for(int i=0; i< 9;++i)

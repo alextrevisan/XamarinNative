@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Android.App;
-using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Java.Interop;
 
 namespace MeuPedido.Droid
 {
@@ -46,6 +44,7 @@ namespace MeuPedido.Droid
             }
             
             instance.NotifyDataSetChanged();
+            instance.NotifyDataSetInvalidated();
         }
 
         public override long GetItemId(int position)
@@ -106,7 +105,7 @@ namespace MeuPedido.Droid
             favButton.SetOnClickListener(new FavoriteClickListener(product, favButton));
             favButton.SetImageResource(FavoritesManager.GetInstance().IsFavorite(product) ? Resource.Mipmap.ic_star : Resource.Mipmap.ic_star_border);
 
-            //Fake section
+            //Section bar
             var currentSale = AppData.Sales.Find(x => x.Category_id == product.Category_id);
             var hasSale = currentSale != null;
 
@@ -156,6 +155,7 @@ namespace MeuPedido.Droid
             discountLayout.Visibility = discount <= 0.0 ? ViewStates.Invisible : ViewStates.Visible;
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
             productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
+            
             FragmentCatalog.UpdateBuyButton();
             FragmentCart.UpdateCart();
         }

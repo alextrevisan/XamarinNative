@@ -27,7 +27,6 @@ namespace MeuPedido.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //RequestWindowFeature(WindowFeatures.ActionBar);
             SetContentView(Resource.Layout.activity_product_detail);
 
             SupportActionBar.SetTitle(Resource.String.detail);
@@ -56,7 +55,6 @@ namespace MeuPedido.Droid
             var discount = AppData.CurrentCart.DiscountFor(product);
             var price = AppData.CurrentCart.PriceFor(product);
             var quantity = AppData.CurrentCart.QuantityFor(product);
-
 
 
             productTitle.Text = product.Name;
@@ -124,9 +122,13 @@ namespace MeuPedido.Droid
             productDiscount.Text = String.Format("↓{0:0.0}%", discount).Replace(".", ",");
             productValue.Text = price.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"));
 
-            FragmentCatalog.UpdateBuyButton();
-            FragmentCart.UpdateCart();
-            CatalogListAdapter.UpdateCatalog();
+            RunOnUiThread(() =>
+            {
+                FragmentCatalog.UpdateBuyButton();
+                FragmentCart.UpdateCart();
+                CatalogListAdapter.UpdateCatalog();
+            });
+            
         }
     }
 }

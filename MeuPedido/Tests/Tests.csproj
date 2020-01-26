@@ -46,15 +46,15 @@
       <Project>{AE13E6C9-03EE-4E10-9CA6-D53623C57033}</Project>
       <Name>MeuPedido</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Droid\MeuPedido.Droid.csproj">
-      <Project>{B24C550F-FD9C-474D-B68A-D4BB021FFE15}</Project>
-      <Name>MeuPedido.Droid</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\iOS\MeuPedido.iOS.csproj">
       <Project>{005A77F9-C97C-451C-8BCD-8723259F7941}</Project>
       <Name>MeuPedido.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Droid\MeuPedido.Droid.csproj">
+      <Project>{B24C550F-FD9C-474D-B68A-D4BB021FFE15}</Project>
+      <Name>MeuPedido.Droid</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>

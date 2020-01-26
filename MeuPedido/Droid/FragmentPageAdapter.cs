@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Android.Support.V4.App;
 using FragmentManager = Android.Support.V4.App.FragmentManager;

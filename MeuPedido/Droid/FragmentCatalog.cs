@@ -1,15 +1,8 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -50,7 +43,9 @@ namespace MeuPedido.Droid
         private void BuyBtn_Click(object sender, EventArgs e)
         {
             MainActivity activity = Activity as MainActivity;
+            
             activity.SetViewPager(1);
+            CartListAdapter.UpdateCart();
         }
 
         public static void UpdateBuyButton()
@@ -67,7 +62,6 @@ namespace MeuPedido.Droid
 
         public void OnItemClick(AdapterView parent, View view, int position, long id)
         {
-            Console.WriteLine("ITEMMMM");
             var activity = new Intent(Activity, typeof(ProductDetailActivity));
 
             Product item = adapter[position];

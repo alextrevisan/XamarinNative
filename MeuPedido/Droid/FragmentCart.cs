@@ -1,15 +1,7 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -34,7 +26,7 @@ namespace MeuPedido.Droid
 
             cartListView = view.FindViewById<ListView>(Resource.Id.catalog_list_view);
             cartListView.Adapter = new CartListAdapter(Activity, AppData.CurrentCart.Products());
-
+            
             cartTotalItems = view.FindViewById<TextView>(Resource.Id.cartTotalItems);
             cartTotalValue = view.FindViewById<TextView>(Resource.Id.cartTotalValue);
 
@@ -56,6 +48,12 @@ namespace MeuPedido.Droid
 
             cartTotalItems.Text = itemCount + " UN";
             cartTotalValue.Text = valueTotal.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR")); 
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            UpdateCart();
         }
     }
 }
