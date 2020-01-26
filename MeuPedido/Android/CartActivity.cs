@@ -28,7 +28,7 @@ namespace MeuPedido.Droid
 
             SetContentView(Resource.Layout.activity_cart);
 
-            SupportActionBar.SetTitle(Resource.String.detail);
+            SupportActionBar.SetTitle(Resource.String.cart);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             
