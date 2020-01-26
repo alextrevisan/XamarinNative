@@ -27,7 +27,7 @@ namespace Tests
                     .Android
                     // TODO: Update this path to point to your Android app and uncomment the
                     // code if the app is not included in the solution.
-                    .ApkFile ("../../../Droid/bin/Debug/com.gmail.alexbaixista.meupedido.apk")
+                    .ApkFile ("../../../Android/bin/Debug/com.gmail.alexbaixista.meupedido.apk")
                     .StartApp();
             }
 

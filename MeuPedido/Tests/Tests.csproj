@@ -52,8 +52,8 @@
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Droid\MeuPedido.Droid.csproj">
-      <Project>{B24C550F-FD9C-474D-B68A-D4BB021FFE15}</Project>
+    <ProjectReference Include="..\Android\MeuPedido.Droid.csproj">
+      <Project>{DF6FD873-12E1-44B5-B8F9-8951C08E7FBA}</Project>
       <Name>MeuPedido.Droid</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
